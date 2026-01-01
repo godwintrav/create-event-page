@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import type { EventData } from "../types/eventType";
 import Spinner from "../components/spinner";
 import { useNavigate } from "react-router-dom";
+import { isValidUrl } from "../utils/utils";
 
 
 function Event() {
@@ -31,6 +32,15 @@ function Event() {
   };
 
   const updateLink = (index: number, value: string) => {
+
+    if (!value.startsWith("https://") && !value.startsWith("http://")){
+        value = `https://${value}`
+    }
+
+    if(!isValidUrl(value)){
+      setError("Invalid Link")
+      return;
+    }
     const updatedLinks = [...links];
     updatedLinks[index] = value;
     setLinks(updatedLinks);
@@ -172,8 +182,10 @@ function Event() {
           let’s hang
         </h2>
       </div>
-      <div className="flex w-[1440px] h-[1024px] pt-[32px] pb-[48px] px-[95px] gap-[72px]">
-        <div className="w-[520px] h-[607px] gap-[16px] flex flex-col">
+      <div className="flex max-w-[1440px] w-full min-h-screen pt-[32px] pb-[48px] px-[95px] gap-[72px] mx-auto">
+
+        <div className="w-[520px] flex flex-col gap-[16px] shrink-0">
+
           <div
             className="relative w-[520px] h-[520px] rounded-[16px] overflow-hidden bg-[#1f1f1f]"
             style={{
@@ -225,7 +237,8 @@ function Event() {
           </button>
         </div>
 
-        <div className="w-[682px] h-[924px] gap-[32px] flex flex-col">
+        <div className="w-full max-w-[682px] flex flex-col gap-[32px] overflow-visible">
+
           <div className="h-[57px]">
             <input
               value={eventName}
@@ -280,7 +293,7 @@ function Event() {
             <div className="flex items-center rounded-[16px] w-[650px] h-[36px] p-[8px] gap-[16px] mb-[10px]">
               <div className="text-[16px]">💵</div>
               <input
-                type="text"
+                type="number"
                 placeholder="Cost per Person"
                 value={cost}
                 onChange={(e) => setCost(e.target.value)}
@@ -393,7 +406,7 @@ function Event() {
 
           <button
             onClick={handleGoLive}
-            className="w-[682px] h-[71px] rounded-[16px] bg-[#252525]/55 backdrop-blur-md px-[12px] py-[20px] border-none flex flex-col gap-[12px] items-center justify-center cursor-pointer"
+            className="w-full min-h-[71px] rounded-[16px] bg-[#252525]/55 backdrop-blur-md px-[12px] py-[20px] border-none flex flex-col gap-[12px] items-center justify-center cursor-pointer"
             disabled={isLoading}
           >
             {

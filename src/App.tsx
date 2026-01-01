@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Event from './pages/event'
+import LiveEvent from './pages/live-event'
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Event />} />
+        <Route path="/events/:id" element={<LiveEvent />} />
       </Routes>
     </BrowserRouter>
   )
