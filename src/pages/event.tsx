@@ -87,6 +87,36 @@ function Event() {
   
 
   const handleGoLive = () => {
+    if(!eventName.trim()){
+    setError("Event name is required")
+    return;
+   }
+   
+   if(!phone.trim()){
+    setError("Phone number is required")
+    return;
+   }
+
+   if(!dateTime.trim()){
+    setError("Date is required")
+    return;
+   }
+
+   if(!location.trim()){
+    setError("Location is required")
+    return;
+   }
+
+   if(!cost.trim()){
+    setError("Cost is required")
+    return;
+   }
+
+   if(!description.trim()){
+    setError("Event Description is required")
+    return;
+   }
+
   const uuid = crypto.randomUUID();
 
   const eventPayload: EventData = {
@@ -142,7 +172,7 @@ function Event() {
           let’s hang
         </h2>
       </div>
-      <div className="flex w-[1440px] h-[1004px] pt-[32px] pb-[48px] px-[95px] gap-[72px]">
+      <div className="flex w-[1440px] h-[1024px] pt-[32px] pb-[48px] px-[95px] gap-[72px]">
         <div className="w-[520px] h-[607px] gap-[16px] flex flex-col">
           <div
             className="relative w-[520px] h-[520px] rounded-[16px] overflow-hidden bg-[#1f1f1f]"
@@ -201,7 +231,7 @@ function Event() {
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
               className="font-sans flex-1 outline-none border-none bg-transparent placeholder-[#C2C2C2] text-[#C2C2C2] text-[48px] font-[600]"
-              placeholder="Name your event"
+              placeholder="Enter your event name"
             />
           </div>
 
@@ -378,13 +408,16 @@ function Event() {
               )
             }
           </button>
-
-          {
+            {
             error && (
+            <div>
               <p className="text-[red] font-bold text-center">{error}</p>
+            </div>
             )
           }
         </div>
+
+        
       </div>
     </div>
   );
