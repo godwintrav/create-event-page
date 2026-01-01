@@ -179,7 +179,7 @@ function Event() {
       {/* Main section */}
       <div className="px-[95px] h-[80px] flex items-center text-[white]">
         <h2 className=" font-[700] text-[32px] text-black font-syne leading-[100%] tracking-[-0.29px]">
-          let’s hang
+          Let’s Hang
         </h2>
       </div>
       <div className="flex max-w-[1440px] w-full min-h-screen pt-[32px] pb-[48px] px-[95px] gap-[72px] mx-auto">
